@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Sep 2026 pada 16.37
--- Versi server: 10.1.32-MariaDB
--- Versi PHP: 7.2.5
+-- Generation Time: Sep 29, 2026 at 05:18 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,74 +32,76 @@ CREATE TABLE `admin` (
   `nama` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `nama`, `username`, `password`, `created_at`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$98vbxh4xT65X0Rnc9/L33eWkPdxz8VL4hbvd338D7IILqDOqYj4e6', '2026-09-27 13:56:08');
+(1, 'Administrator Toko', 'admin', '$2y$10$A.8sX9iW39eE3mta7W2ghOXw1zWVdpUl0nRnn7I1n5gSsnhLNy6Eu', '2026-09-28 10:31:20');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
   `id` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
+  `nama` varchar(150) NOT NULL,
   `kategori` varchar(50) NOT NULL,
+  `harga` int(11) NOT NULL,
   `deskripsi` text NOT NULL,
-  `harga` decimal(12,2) NOT NULL,
-  `stok` int(11) NOT NULL DEFAULT '0',
-  `gambar` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `gambar` varchar(255) DEFAULT 'default.jpg',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama`, `kategori`, `deskripsi`, `harga`, `stok`, `gambar`, `created_at`) VALUES
-(1, 'Brownies Coklat', 'Brownies', 'Brownies coklat lembut dengan topping coklat premium.', '45000.00', 20, 'brownies.jpg', '2026-09-27 13:32:53'),
-(2, 'Cheese Cake', 'Cake', 'Cheese cake lembut dengan rasa keju yang creamy.', '65000.00', 15, 'cheesecake.jpg', '2026-09-27 13:32:53'),
-(3, 'Donat Coklat', 'Donat', 'Donat lembut dari bahan kentang asli dengan topping coklat yang masnis.', '30000.00', 25, 'donat.jpg', '2026-09-27 13:32:53');
+INSERT INTO `produk` (`id`, `nama`, `kategori`, `harga`, `deskripsi`, `gambar`, `created_at`) VALUES
+(1, 'Choco Lava Cake', 'Cake', 25000, 'Kue bolu cokelat panggang dengan lelehan cokelat hangat yang lumer di dalamnya.', 'choco-lava.jpg', '2026-09-28 08:24:36'),
+(2, 'Cheesecake Oreo', 'Dessert', 35000, 'Perpaduan biskuit Oreo renyah dengan krim manis yang creamy dan taburan Oreo di atasnya.', 'cheesecake-oreo.jpg', '2026-09-28 08:24:36'),
+(3, 'Pancake Strawberry', 'Cake', 20000, 'Pancake lembut dengan madu manis dan potongan stroberi segar yang menggugah selera.', 'pancake-strawberi.jpg', '2026-09-28 08:24:36'),
+(4, 'Donat Tiramisu', 'Bread', 12000, 'Donat empuk dengan balutan krim tiramisu manis beraroma kopi lembut.', 'donat-tiramisu.jpg', '2026-09-28 08:24:36'),
+(5, 'Bolu Pisang Keju', 'Bread', 30000, 'Bolu panggang pisang asli yang legit dan wangi dengan taburan keju parut renyah.', 'bolu-pisang.jpg', '2026-09-28 08:24:36'),
+(6, 'Muffin Chocochip', 'Cake', 15000, 'Kue muffin cokelat dan empuk dengan taburan butiran chocochip melimpah. yummy', 'muffin-chocochip.jpg', '2026-09-28 08:24:36');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
